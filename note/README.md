@@ -259,3 +259,31 @@ export default function MeowArticle(){
   reutrn <div>{text}</div>
 }
 ```
+
+# routing
+
+## loading
+
+https://nextjs.org/docs/app/api-reference/file-conventions/loading
+https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming
+
+loading.tsx를 사용하는 것은 react suspense boundery와 같습니다.
+
+SSR일 경우 loading.tsx는 의미가 있지만, SSG일 경우는 의미가 없습니다.
+왜냐하면 SSR일 경우 보통 api요청을 외부로 보내는데 이를 받아올 떄 까지 loading을 보여줍니다.
+근데 SSG라면 완성된 페이지를 서버에서 보내기때문에 loading을 보여줄 필요가 없습니다.
+
+## error
+
+error.tsx를 사용하는 것은 react error boundery와 같습니다.
+에러 컴포넌트는 반드시 클라이언트 컴포넌트여야 합니다.
+
+### global-error
+
+최상위 에러로 활성 상태일 때 root layout.js를 대체합니다.
+
+# image
+
+Static한 이미지는 자동으로 최적화 합니다.
+
+만약 외부 경로를 사용할 경우 width, hegiht를 지정해야합니다.
