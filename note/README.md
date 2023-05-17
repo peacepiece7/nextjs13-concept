@@ -239,3 +239,23 @@ ISR은 사용자가 반복 요청시 캐시된 데이터를 보내주는 용도�
 ```js
 export const revalidate = 3
 ```
+
+# CSR
+
+nextjs 진심 개쩌는 점이 CSR도 정적인 데이터는 페이지 소스에 포함이 되도록 할 수 있음...
+
+```js
+'use client'
+
+export default function MeowArticle(){
+  const [text, setText] = useState('데이터 로딩 중...') // useState에 들어가는 인자는 페이지 소스에 포함됨!
+
+  useEffect(() => {
+    fetch("https://...", {next : {cache : "no-store"}})
+    .then((res) => res.json())
+    .then((data) => setText(data.data[0]))
+  },[])
+
+  reutrn <div>{text}</div>
+}
+```
