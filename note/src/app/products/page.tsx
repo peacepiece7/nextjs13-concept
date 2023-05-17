@@ -1,6 +1,9 @@
 import { getProducts } from '@/service/products'
 import Link from 'next/link'
 
+// revalidate: 3초마다 패아자룰 다시 생성
+export const revalidate = 3
+
 export default async function ProductsPage() {
   const products = await getProducts()
   return (
