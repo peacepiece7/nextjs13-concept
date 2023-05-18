@@ -1,5 +1,6 @@
 import NotFoundPage from '@/app/not-found'
 import { getProduct, getProducts } from '@/service/products'
+import Image from 'next/image'
 
 type Params = {
   params: {
@@ -25,6 +26,7 @@ export default async function ProductItemsPage({ params: { slug } }: Params) {
   return (
     <div>
       <h1>{product.name} 제품 설명 페이지</h1>
+      <Image src={product.image} width={400} height={400} alt='product'></Image>
     </div>
   )
 }

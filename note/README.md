@@ -185,11 +185,12 @@ https://nextjs.org/docs/app/api-reference/components/link#prefetch
 
 ## Server Component
 
-요청이 올때 마다 서버에서 실행되는 컴포넌트
+요청이 올때 마다 서버에서 실행되는 컴포넌트입니다.
 
-Node.js API를 사용하능하고, Brower API를 사용할 수 없음!
-상태관리를 할 수 없음!
-클라리언트 요청시 html만 제공됨
+Node.js API를 사용가능!
+but Brower API를 사용할 수 없어요
+상태관리를 할 수 없어요!
+클라리언트 요청시 html만 제공됩니다.
 
 ```js
 import fs from 'fs' // 서버 컴포넌트는 Node.js API사용가능!
@@ -202,10 +203,10 @@ export default function HomePage() {
 
 ## Client Component
 
-클라이언트 컴포넌트는 선언을 따로 해줘야 함
+클라이언트 컴포넌트는 선언을 따로 해줘야 합니다.
 
 ```js
-'use client' // 이걸 선언해야 Client Component임!
+'use client' // 이걸 선언해야 Client Component입니다.
 import { useState } from 'react'
 
 export default function Counter() {
@@ -232,9 +233,9 @@ ISR은 사용자가 반복 요청시 캐시된 데이터를 보내주는 용도�
 
 특정 시간마다 바뀌는 타임 특가 광고라면 ISR이 좋을 것 같습니다. (ISR은 쓸일이 별로 없을 것 같습니다..)
 
-**ISR은 SSR을 효율적으로 쓰기위한 대체제지 SSG의 대체제가 아님!**
+**ISR은 SSR을 효율적으로 쓰기위한 대체제지 SSG의 대체제가 아님다!**
 
-정적 파일을 유지하면서 다시 빌드하는 방법은 pre-build를 생각해보자 (관련 옵션이 있을 수도)
+정적 파일을 유지하면서 다시 빌드하는 방법은 pre-build를 생각해봅시다. (관련 옵션이 있을 수도)
 
 ```js
 export const revalidate = 3
@@ -242,7 +243,7 @@ export const revalidate = 3
 
 # CSR
 
-nextjs 진심 개쩌는 점이 CSR도 정적인 데이터는 페이지 소스에 포함이 되도록 할 수 있음...
+nextjs 진심 개쩌는 점이 CSR도 정적인 데이터는 페이지 소스에 포함이 되도록 할 수 있습니다..
 
 ```js
 'use client'
@@ -286,4 +287,33 @@ error.tsx를 사용하는 것은 react error boundery와 같습니다.
 
 Static한 이미지는 자동으로 최적화 합니다.
 
-만약 외부 경로를 사용할 경우 width, hegiht를 지정해야합니다.
+만약 외부 경로를 사용할 경우 nextjs.config에 아래와같이 도메인을 추가해주고
+width, hegiht를 지정해야합니다.
+
+```js
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        host: 'images.unsplash.com',
+      },
+    ],
+  },
+```
+
+이미지 사이즈가 고정되어 있기 때문에 layout shift가 발생하지 않습니다.
+
+이미지 로딩의 우선순위를 지정하고 싶으면 priority 속성을 사용할 수 있습니다.
+
+```js
+<Image src={clothesImage} alt='Clothes' priority />
+```
+
+# Font
+
+https://nextjs.org/docs/app/building-your-application/optimizing/fonts
+
+variable font란
+이텔릭, 볼드 등 어려 종류의 폰트가 포함된 폰트입니다.
+
+프로젝트 최상위 경로에서 font를 선언해주는 것이 좋습니다.

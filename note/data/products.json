@@ -2,21 +2,19 @@
   {
     "id": "1234",
     "name": "청바지",
+    "image": "/pants.jpeg",
     "price": 5000
   },
   {
     "id": "1235",
     "name": "티셔츠",
+    "image": "/skirt.jpeg",
     "price": 10000
   },
   {
     "id": "1236",
     "name": "양말",
-    "price": 2000
-  },
-  {
-    "id": "1238",
-    "name": "양말4",
+    "image": "/socks.jpeg",
     "price": 2000
   }
 ]
