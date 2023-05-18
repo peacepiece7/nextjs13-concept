@@ -317,3 +317,67 @@ variable font란
 이텔릭, 볼드 등 어려 종류의 폰트가 포함된 폰트입니다.
 
 프로젝트 최상위 경로에서 font를 선언해주는 것이 좋습니다.
+
+# redirect
+
+nextjs.config.js에서 설정 가능합니다.
+
+source : string
+
+- 타겟이되는 주소입니다.
+
+destination : string
+
+- redirect 되는 목적지니다.
+
+permanent : boolean
+
+- true시 redirect status 308을(permanent redirect) 반환하고, false시 redirect 307 (temporary redirect)을 반환합니다.
+- true시 페이지가 영구 이동 되었을음 크롤러에게 알리고, 검색 엔진은 해당 주소를 캐싱합니다.
+
+```js
+const nextConfiguration = {
+  async redirect() {
+    return [
+      {
+        source: '/products/delected_forever',
+        destination: '/products',
+        permanent: true,
+      },
+    ]
+  },
+}
+```
+
+# rewrite
+
+경로를 덮어 씌웁니다.
+
+기존의 복잡한 URL구조가 있다면 짧은 경로로 변경하고, 프로젝트의 구조를 숨길 수 있습니다.
+
+source : string
+
+- 클라이언트에 표시되는 주소입니다.
+- 클라이언트가 요청한 주소이기도 합니다.
+
+destination : string
+
+- 클라이언트가 보게되는 내용이 있는 주소입니다.
+- source 속성의 경로로 클라이언트가 접속하면 이 주소의 내용이 나타납니다.
+
+```js
+const nextConfiguration = {
+  async rewrite() {
+    return [
+      {
+        source: '/taeuk',
+        destination: '/about/me/name/taeuk',
+      },
+      {
+        source: 'items/:slug',
+        destination: '/products/:slug',
+      },
+    ]
+  },
+}
+```
