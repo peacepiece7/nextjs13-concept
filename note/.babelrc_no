@@ -1,3 +1,4 @@
+// custem 바벨설정이 font관련 설정이랑 충돌나서 뻈습니다.
 {
   "presets": ["next/babel"],
   "plugins": []

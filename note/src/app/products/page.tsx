@@ -1,6 +1,6 @@
 import { getProducts } from '@/service/products'
 import Link from 'next/link'
-import MeowArticle from '../components/meow'
+import MeowArticle from '../../components/meow'
 import productImage from '../../../public/image.jpeg'
 import Image from 'next/image'
 

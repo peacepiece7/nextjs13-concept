@@ -351,9 +351,8 @@ const nextConfiguration = {
 
 # rewrite
 
-경로를 덮어 씌웁니다.
-
-기존의 복잡한 URL구조가 있다면 짧은 경로로 변경하고, 프로젝트의 구조를 숨길 수 있습니다.
+기존의 복잡한 경로를 쉬운 경로로 덮어씌웁니다.
+프로젝트의 구조를 숨길 수 있습니다.
 
 source : string
 
@@ -370,14 +369,65 @@ const nextConfiguration = {
   async rewrite() {
     return [
       {
-        source: '/taeuk',
+        source: '/aboutme',
         destination: '/about/me/name/taeuk',
       },
       {
-        source: 'items/:slug',
+        source: '/items/:slug',
         destination: '/products/:slug',
       },
     ]
   },
 }
 ```
+
+## 동적인 redirect
+
+goProductsPage함수로 페이지를 이동는데 해당 데이터가 없다면
+동적으로 redirect 할 수 있습니다.
+
+```ts
+// products/[slug].tsx
+import { redirect } from 'next/navigation'
+
+if (!data) {
+  redirect('/products')
+}
+
+// product item button componenet
+import { useRouter } from 'next/navigation'
+const router = useRouter()
+
+function goProductsPage() {
+  router.push(`/products/${item}`)
+}
+```
+
+# middleware
+
+기본적으로 아래와 같이 작성할 수 있다.
+
+```js
+// service/middleware.ts
+import { NextRequest, NextResponse } from 'next/server'
+
+export default function middleware(request: NextRequest) {
+  console.log('미들웨어 실행 중')
+  if (request.nextUrl.pathname.startsWith('/products/1004')) {
+    return NextResponse.redirect(new URL('/products/1004', request.url))
+  }
+}
+
+export const config = {
+  // regex지원
+  // '/((?!api|_next/static|_next/image|favicon.ico).*)',
+  // /products/:path* path가 있거나(많거나) 없거나 둘 다 가능
+  // /products/:path+ path가 하나 또는 많거나
+  matcher: ['/products/:1004*'],
+}
+```
+
+그 외에서 쿠키 설정
+request 헤더 설정
+응답 생성(권환 학인 같인 작업)이 가능하다.
+https://nextjs.org/docs/app/building-your-application/routing/middleware

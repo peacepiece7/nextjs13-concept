@@ -1,6 +1,8 @@
-import NotFoundPage from '@/app/not-found'
+// import NotFoundPage from '@/app/not-found'
 import { getProduct, getProducts } from '@/service/products'
 import Image from 'next/image'
+import { redirect } from 'next/navigation'
+import GoProductsButton from '@/components/GoProductsButton'
 
 type Params = {
   params: {
@@ -19,7 +21,8 @@ export default async function ProductItemsPage({ params: { slug } }: Params) {
   const product = await getProduct(slug)
 
   if (!product) {
-    NotFoundPage()
+    redirect('/products')
+    // NotFoundPage()
     return
   }
 
@@ -27,6 +30,7 @@ export default async function ProductItemsPage({ params: { slug } }: Params) {
     <div>
       <h1>{product.name} 제품 설명 페이지</h1>
       <Image src={product.image} width={400} height={400} alt='product'></Image>
+      <GoProductsButton></GoProductsButton>
     </div>
   )
 }
