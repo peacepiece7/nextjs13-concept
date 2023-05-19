@@ -11,7 +11,7 @@ export default async function ProductsPage() {
 
   return (
     <>
-      <h1>ProductsPage ver5</h1>
+      <h1>ProductsPage ver6</h1>
       <Image src={productImage} alt='products' width={600} height={600} />
       <ul>
         {products.map((product) => (
