@@ -10,5 +10,5 @@ export default function middleware(request: NextRequest) {
 export const config = {
   // regex지원
   // '/((?!api|_next/static|_next/image|favicon.ico).*)',
-  matcher: ['/products/:1004*'],
+  matcher: ['/products/:path*'],
 }
