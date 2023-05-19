@@ -23,7 +23,7 @@ const nextConfig = {
         destination: '/products',
         permanent: false,
       },
-    ];
+    ]
   },
   async rewrites() {
     return [
@@ -35,8 +35,8 @@ const nextConfig = {
         source: '/items/:slug',
         destination: '/products/:slug',
       },
-    ];
+    ]
   },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig

@@ -1,0 +1,5 @@
+{
+  // https://medium.com/devityoself/monorepo-eslint-vscode-6f5982c8404d
+  // mono repo에서 next/babel을 찾지못하는 현상
+  "eslint.workingDirectories": ["./note", "/note_2"]
+}
